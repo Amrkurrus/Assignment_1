@@ -2,23 +2,33 @@ import models.Point;
 import models.Shape;
 
 import java.io.File;
-import  java.io.FileNotFoundException;
+import java.io.FileNotFoundException;
+
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-       Scanner in = new Scanner(System.in);
-       File file = new File("C:\\aitu\\y1t2\\itp2\\java\\Shape\\sample.txt");
-       Shape shape = new Shape();
+        try {
+            File file = new File("src\\source.txt");
+            Scanner f = new Scanner(file);
+            f.useLocale(Locale.US);
+            Shape shape = new Shape();
 
-       while (in.hasNextLine()) {
-            double x = in.nextDouble();
-            double y = in.nextDouble();
-            Point point = new Point(x, y);
+            while (f.hasNext()) {
+                double x = f.nextDouble();
+                double y = f.nextDouble();
+                Point point = new Point(x, y);
+                shape.addPoint(point);
+            }
 
-       }
+            System.out.println(shape.getPerimeter());
+            System.out.println(shape.getLongestSide());
+            System.out.println(shape.getAverageSide());
+            f.close();
 
-       double x = in.nextDouble();
-
+        } catch (FileNotFoundException exception) {
+            System.out.println("File not found.");
         }
+    }
 }

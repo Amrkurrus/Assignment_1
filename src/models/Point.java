@@ -1,5 +1,7 @@
 package models;
 
+import java.lang.Math;
+
 public class Point {
 
     private double x;
@@ -14,8 +16,9 @@ public class Point {
         double x1 = this.x;
         double x2 = dest.x;
 
-        return 0;
+        double y1 = this.y;
+        double y2 = dest.y;
+
+        return Math.sqrt(Math.pow(x1 - x2, 2.0) + Math.pow(y1 - y2, 2.0));
     }
-
-
 }
